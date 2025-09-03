@@ -129,3 +129,5 @@ PRODUCTION_URL = config(
     "PRODUCTION_URL",
     default="https://agendavip.shop"
 )
+
+
