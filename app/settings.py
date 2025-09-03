@@ -131,3 +131,4 @@ PRODUCTION_URL = config(
 )
 
 
+LOGIN_URL = 'login' 
