@@ -1,0 +1,453 @@
+
+:root {
+    --primary-color: #6f42c1;
+    --secondary-color: #0dcaf0;
+    --accent-color: #ff00ff;
+    --dark-color: #1a0933;
+    --light-color: #f8f9fa;
+    --gradient-primary: linear-gradient(135deg, #6f42c1 0%, #6610f2 100%);
+    --gradient-secondary: linear-gradient(135deg, #0dcaf0 0%, #0d6efd 100%);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.navbar {
+    background: var(--gradient-primary);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.event-hero {
+    position: relative;
+    padding: 3rem 0;
+    background: linear-gradient(rgba(26, 9, 51, 0.8), rgba(26, 9, 51, 0.8)), url('https://via.placeholder.com/1600x500/6f42c1/ffffff?text=Event+Banner') center/cover no-repeat;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.event-poster {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    width: 100%;
+}
+
+.event-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.event-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.btn-buy-tickets {
+    background: var(--gradient-secondary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(13, 202, 240, 0.3);
+}
+
+.btn-buy-tickets:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(13, 202, 240, 0.4);
+}
+
+.event-info-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.info-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.info-item {
+    display: flex;
+    margin-bottom: 0.75rem;
+}
+
+.info-icon {
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+    min-width: 24px;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 2rem 0 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-secondary);
+    border-radius: 3px;
+}
+
+.seat-map {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.screen {
+    background: var(--gradient-primary);
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin: 0 auto 2rem;
+    max-width: 400px;
+    font-weight: 600;
+}
+
+.seats-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.seat {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.seat-available {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.seat-available:hover {
+    background: #dee2e6;
+    transform: scale(1.05);
+}
+
+.seat-selected {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.seat-unavailable {
+    background: #dc3545;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.seat-vip {
+    background: gold;
+    color: #000;
+}
+
+.seat-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.seat-type {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.seat-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.color-available {
+    background: #e9ecef;
+}
+
+.color-selected {
+    background: var(--primary-color);
+}
+
+.color-unavailable {
+    background: #dc3545;
+}
+
+.color-vip {
+    background: gold;
+}
+
+.ticket-summary {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 2rem;
+}
+
+.summary-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.summary-total {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--secondary-color);
+}
+
+.footer {
+    background: var(--dark-color);
+    color: white;
+    padding: 3rem 0 1.5rem;
+    margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+    .event-title {
+        font-size: 2rem;
+    }
+    
+    .seats-grid {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .seats-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+/* Evento - Card de Informações */
+.event-info-card {
+    background: linear-gradient(145deg, #f4f0fa, #e9e1f7);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(111, 66, 193, 0.25);
+    margin-bottom: 2rem;
+    border: 1px solid var(--primary-color);
+    color: #1a0933;
+}
+
+.event-info-card .info-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.event-info-card .info-item {
+    display: flex;
+    margin-bottom: 0.75rem;
+    padding: 0.3rem 0;
+}
+
+.event-info-card .info-icon {
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+    font-size: 1.3rem;
+    min-width: 28px;
+}
+
+.event-info-card .info-item div .fw-bold {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.event-info-card .info-item div div {
+    color: #4a3a6e; /* leve contraste com primary-color */
+}
+/* Card lateral dentro do hero */
+.info-card-side {
+    max-width: 280px;  /* diminui o tamanho do card */
+    padding: 1rem;
+    margin-left: auto; /* alinha à direita da coluna */
+}
+
+/* Ajusta ícones e textos para caber melhor */
+.info-card-side .info-item {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-card-side .info-icon {
+    font-size: 1.1rem;
+    min-width: 24px;
+}
+
+.info-card-side .fw-bold {
+    font-size: 0.95rem;
+}
+.seat-vip { background-color: gold; }
+.seat-camarote { background-color: blue; }
+.seat-openbar { background-color: green; }
+.seat-available { background-color: gray; }
+.seat-unavailable { background-color: darkgray; }
+.seat-selected { border: 2px solid red; }
+
+.seats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.seat {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* Adicione ao seu event_detail.css */
+.seat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.row-label {
+    width: 30px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.seats-grid {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Estilos para os tipos de assento */
+.seat-vip { background-color: #ffd700; color: #000; }
+.seat-camarote { background-color: #9370db; color: #fff; }
+.seat-normal { background-color: #6c757d; color: #fff; }
+.seat-openbar { background-color: #28a745; color: #fff; }
+
+/* Estados dos assentos */
+.seat-available { opacity: 1; }
+.seat-unavailable { 
+    background-color: #dc3545 !important; 
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+.seat-selected {
+    border: 3px solid #007bff;
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+.seat-btn {
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.seat-available {
+    background-color: #28a745;
+    color: white;
+}
+
+.seat-reserved {
+    background-color: #ffc107;
+    color: black;
+}
+
+.seat-sold {
+    background-color: #dc3545;
+    color: white;
+}
+
+.seat-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.seat-btn.active {
+    background-color: #007bff !important;
+    color: white !important;
+}

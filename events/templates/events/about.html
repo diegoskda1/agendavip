@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Sobre - AgendaVIP{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Sobre o {{ project_name }}</h1>
+
+    <p>{{ project_description }}</p>
+
+    <h3 class="mt-5">Desenvolvido por {{ company_name }}</h3>
+    <p>{{ additional_info }}</p>
+    <a href="{{ company_website }}" target="_blank" class="btn btn-primary mt-3">
+        Conhecer a empresa
+    </a>
+
+    <hr class="my-5">
+
+    <h4>Mais sobre o projeto</h4>
+    <ul>
+        <li>Listagem de eventos em tempo real</li>
+        <li>Cadastro de locais e artistas</li>
+        <li>Integração com redes sociais</li>
+        <li>Experiência responsiva e moderna</li>
+    </ul>
+</div>
+{% endblock %}

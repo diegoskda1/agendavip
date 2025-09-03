@@ -1,0 +1,149 @@
+/* ===== Container principal ===== */
+.row.justify-content-center {
+    min-height: 100vh; /* altura total da tela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 20px;
+    background: #f4f6f8; /* fundo suave */
+}
+
+/* ===== Container do formulário ===== */
+.col-md-6 {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 480px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* ===== Título do formulário ===== */
+h2.text-center {
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 2rem !important;
+    position: relative;
+    padding-bottom: 0.6rem;
+    text-align: center;
+}
+
+h2.text-center:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+    border-radius: 3px;
+}
+
+/* ===== Rótulos e campos ===== */
+.col-md-6 label {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.col-md-6 input, .col-md-6 select {
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+}
+
+.col-md-6 input:focus, .col-md-6 select:focus {
+    border-color: #6a11cb;
+    box-shadow: 0 0 0 4px rgba(106, 17, 203, 0.15);
+    outline: none;
+    background-color: #fff;
+}
+
+/* ===== Mensagens de erro ===== */
+.col-md-6 .errorlist {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    list-style: none;
+    padding-left: 0;
+    font-weight: 500;
+}
+
+/* ===== Botão de envio ===== */
+.btn-primary {
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+    border: none;
+    padding: 1rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(106, 17, 203, 0.35);
+}
+
+/* ===== Alertas de sucesso ===== */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ===== Link de login ===== */
+.text-center a {
+    color: #6a11cb;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.text-center a:hover {
+    color: #2575fc;
+    text-decoration: underline;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+    .col-md-6 {
+        padding: 2rem;
+        margin: 0.5rem;
+    }
+    
+    h2.text-center {
+        font-size: 1.8rem;
+    }
+}
+
+/* ===== Animação suave ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    text-transform: uppercase;
+}

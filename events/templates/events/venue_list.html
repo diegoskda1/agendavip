@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Locais{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Lista de Locais</h2>
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Endereço</th>
+                    <th>Telefone / WhatsApp</th>
+                    <th>Mapa</th>
+                    <th>Website</th>
+                    <th>Instagram</th>
+                    <th>Facebook</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venue in venues %}
+                <tr>
+                    <td>
+                        {% if venue.cover_image %}
+                        <img src="{{ venue.cover_image.url }}" alt="{{ venue.name }}" style="width: 100px; height: auto; border-radius: 5px;">
+                        {% else %}-{% endif %}
+                    </td>
+                    <td>{{ venue.name }}</td>
+                    <td>{{ venue.address|default:"-" }}</td>
+                    <td>
+                        {% if venue.phone %}
+                            <a href="https://wa.me/{{ venue.phone|cut:"(" |cut:")" |cut:" " |cut:"-" }}" target="_blank">{{ venue.phone }}</a>
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if venue.map_link %}
+                        <a href="{{ venue.map_link }}" target="_blank">Ver mapa</a>
+                        {% else %}-{% endif %}
+                    </td>
+                    <td>
+                        {% if venue.website %}
+                        <a href="{{ venue.website }}" target="_blank">Site</a>
+                        {% else %}-{% endif %}
+                    </td>
+                    <td>
+                        {% if venue.instagram %}
+                        <a href="{{ venue.instagram }}" target="_blank">Instagram</a>
+                        {% else %}-{% endif %}
+                    </td>
+                    <td>
+                        {% if venue.facebook %}
+                        <a href="{{ venue.facebook }}" target="_blank">Facebook</a>
+                        {% else %}-{% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8">Nenhum local encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Eventos - AgendaVIP{% endblock %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/event_list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="mb-3">
+    <form method="get" action="{% url 'events:search_events' %}">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Buscar artista, evento ou local" value="{{ request.GET.q }}">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
+</div>
+
+<h1 style="color:#ff00ff; font-family: 'Orbitron', sans-serif; text-align:center; margin-bottom:2rem;">Eventos</h1>
+
+<!-- Carrossel de Destaques -->
+{% if featured_events %}
+<div id="featuredCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for event in featured_events %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            {% if event.cover_image %}
+            <img src="{{ event.cover_image.url }}" class="d-block w-100" alt="{{ event.name }}">
+            {% else %}
+            <div style="width:100%; height:400px; background-color:#333; display:flex; align-items:center; justify-content:center; color:#fff;">
+                Sem Imagem
+            </div>
+            {% endif %}
+            <div class="carousel-caption d-none d-md-block">
+                <h5>{{ event.name }}</h5>
+                {% if event.description %}
+                <p>{{ event.description|truncatechars:100 }}</p>
+                {% endif %}
+                <a href="{% url 'events:event_detail' event.pk %}" class="btn-details">Ver Detalhes</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+    </button>
+</div>
+{% endif %}
+
+<!-- Grid de Eventos -->
+<div class="events-grid">
+    {% for event in events %}
+    <div class="card">
+        {% if event.cover_image %}
+        <img src="{{ event.cover_image.url }}" alt="{{ event.name }}">
+        {% else %}
+        <div style="width:100%; height:200px; background-color:#333; display:flex; align-items:center; justify-content:center; color:#fff;">Sem Imagem</div>
+        {% endif %}
+        <div style="padding:1rem;">
+            <h3>{{ event.name }}</h3>
+
+            <p><i class="bi bi-calendar-event"></i> {{ event.start_time|date:"d/m/Y H:i" }}</p>
+
+            <p><i class="bi bi-geo-alt"></i>
+                {% if event.venue %}
+                    {{ event.venue.name }}
+                {% else %}
+                    Local não informado
+                {% endif %}
+            </p>
+
+            {% if event.event_type %}
+            <p style="color:#ffd500; font-weight:bold;">
+                <i class="bi bi-tags"></i> {{ event.event_type.name }}
+            </p>
+            {% endif %}
+
+            {% if event.genres.all %}
+            <p><i class="bi bi-music-note-beamed"></i>
+                {% for genre in event.genres.all %}
+                    {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            {% endif %}
+
+            {% if event.artists.all %}
+            <p><i class="bi bi-person"></i>
+                {% for artist in event.artists.all %}
+                    {{ artist.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            {% endif %}
+
+            {% if event.description %}
+            <p style="font-size: 0.9rem; color:#ccc;">
+                {{ event.description|truncatechars:120 }}
+            </p>
+            {% endif %}
+
+            <p style="color:#ffd500; font-weight:bold;">
+                Ingressos: {% if event.tickets_available %}{{ event.tickets_available }}{% else %}0{% endif %}
+                {% if event.price %} | R$ {{ event.price }}{% endif %}
+            </p>
+
+            <a href="{% url 'events:event_detail' event.pk %}" class="btn-details">Ver Detalhes</a>
+        </div>
+    </div>
+    {% empty %}
+    <p style="color:#ff007f; text-align:center;">Nenhum evento disponível no momento.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

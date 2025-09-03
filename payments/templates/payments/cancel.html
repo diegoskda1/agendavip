@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Pagamento Cancelado{% endblock %}
+
+{% block content %}
+<div class="text-center my-5">
+    <h1 class="text-secondary">Pagamento Cancelado</h1>
+    <p class="fs-5">O pagamento não foi concluído.</p>
+    {% if event %}
+        <h2 class="mt-3">{{ event.name }}</h2>
+        <p>Valor: R$ {{ event.event_seats.price }}</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Voltar para a Home</a>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Artistas{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Lista de Artistas</h2>
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Telefone / WhatsApp</th>
+                    <th>Website</th>
+                    <th>Instagram</th>
+                    <th>Facebook</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for artist in artists %}
+                <tr>
+                    <td>
+                        {% if artist.profile_image %}
+                        <img src="{{ artist.profile_image.url }}" alt="{{ artist.name }}" style="width: 100px; height: auto; border-radius: 5px;">
+                        {% else %}-{% endif %}
+                    </td>
+                    <td>{{ artist.name }}</td>
+                    <td>
+                        {% if artist.phone %}
+                            {# Remove espaços e caracteres que possam atrapalhar manualmente #}
+                            <a href="https://wa.me/{{ artist.phone|cut:"(" |cut:")" |cut:" " |cut:"-" }}" target="_blank">{{ artist.phone }}</a>
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if artist.website %}
+                        <a href="{{ artist.website }}" target="_blank">Site</a>
+                        {% else %}-{% endif %}
+                    </td>
+                    <td>
+                        {% if artist.instagram %}
+                        <a href="{{ artist.instagram }}" target="_blank">Instagram</a>
+                        {% else %}-{% endif %}
+                    </td>
+                    <td>
+                        {% if artist.facebook %}
+                        <a href="{{ artist.facebook }}" target="_blank">Facebook</a>
+                        {% else %}-{% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">Nenhum artista encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

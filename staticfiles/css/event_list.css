@@ -1,0 +1,252 @@
+
+        :root {
+            --primary-color: #6f42c1;
+            --secondary-color: #0dcaf0;
+            --accent-color: #ff00ff;
+            --dark-color: #1a0933;
+            --light-color: #f8f9fa;
+            --gradient-primary: linear-gradient(135deg, #6f42c1 0%, #6610f2 100%);
+            --gradient-secondary: linear-gradient(135deg, #0dcaf0 0%, #0d6efd 100%);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .navbar {
+            background: var(--gradient-primary);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .page-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-secondary);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+        
+        .event-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .event-image {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .event-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .event-date {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .event-date .day {
+            font-size: 1.25rem;
+            display: block;
+        }
+        
+        .event-date .month {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            display: block;
+        }
+        
+        .event-name {
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.3;
+            height: 2.6rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        .event-location {
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .event-location i {
+            color: var(--primary-color);
+        }
+        
+        .event-tickets {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .ticket-availability {
+            font-size: 0.85rem;
+            color: #198754;
+            font-weight: 600;
+        }
+        
+        .ticket-availability.low {
+            color: #dc3545;
+        }
+        
+        .btn-details {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.5rem 1.25rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-details:hover {
+            background: var(--gradient-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            color: white;
+        }
+        
+        .no-events {
+            text-align: center;
+            padding: 3rem;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        
+        .events-filter {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+
+
+
+
+
+.carousel-item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.carousel-caption {
+    background: rgba(0,0,0,0.5);
+    padding: 1rem;
+    border-radius: 12px;
+}
+.events-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+    margin-top: 2rem;
+}
+.card {
+    background-color:#1e1e2f;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow:0 8px 25px rgba(0,0,0,0.5);
+}
+.card img {
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+.card h3 {
+    color:#00ffff;
+    font-family:'Orbitron', sans-serif;
+    margin-bottom:0.5rem;
+}
+.card p {
+    color:#ccc;
+    margin-bottom:0.25rem;
+}
+.btn-details {
+    display:inline-block;
+    background-color:#ff00ff;
+    color:#fff;
+    text-decoration:none;
+    padding:0.5rem 1rem;
+    border-radius:8px;
+    font-weight:bold;
+    transition: background-color 0.3s;
+}
+.btn-details:hover {
+    background-color:#cc00cc;
+}

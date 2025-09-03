@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Ingresso - {{ ticket.event.name }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 col-lg-6">
+        <div class="form-container text-center">
+            <h2>Ingresso: {{ ticket.event.name }}</h2>
+            <p><strong>Tipo de Assento:</strong> {{ ticket.seat_type }}</p>
+            <p><strong>Data da Compra:</strong> {{ ticket.purchase_date|date:"d/m/Y H:i" }}</p>
+            {% if ticket.qr_code_image %}
+                <img src="{{ ticket.qr_code_image.url }}" alt="QR Code" style="margin-top:1rem; max-width:100%;">
+            {% endif %}
+            <p style="margin-top:1rem;">
+                <a href="{% url 'accounts:profile' %}">Voltar ao perfil</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

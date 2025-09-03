@@ -1,0 +1,51 @@
+<h1>Relatório de Vendas</h1>
+
+<h2>Resumo por Evento e Tipo de Ingresso</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Evento</th>
+            <th>Tipo de Ingresso</th>
+            <th>Ingressos Vendidos</th>
+            <th>Receita Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in summary %}
+        <tr>
+            <td>{{ item.event__name }}</td>
+            <td>{{ item.ticket_type }}</td>
+            <td>{{ item.total_sold }}</td>
+            <td>R$ {{ item.total_revenue }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Detalhes das Vendas</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Comprador</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Evento</th>
+            <th>Tipo de Ingresso</th>
+            <th>Preço</th>
+            <th>Data da Compra</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.buyer_name }}</td>
+            <td>{{ ticket.buyer_cpf }}</td>
+            <td>{{ ticket.buyer_phone }}</td>
+            <td>{{ ticket.event.name }}</td>
+            <td>{{ ticket.ticket_type }}</td>
+            <td>R$ {{ ticket.price }}</td>
+            <td>{{ ticket.purchase_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

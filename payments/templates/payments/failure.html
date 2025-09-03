@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Pagamento Falhou{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1>Pagamento Falhou</h1>
+    <p>Ocorreu um problema durante o pagamento.</p>
+
+    <h2>Pedido: #{{ order.id }}</h2>
+    <p>Valor: R$ {{ order.final_price }}</p>
+
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Voltar para o site</a>
+</div>
+{% endblock %}

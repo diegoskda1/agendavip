@@ -1,0 +1,12 @@
+{% for ticket in tickets %}
+<div class="ticket-card">
+    <h3>{{ ticket.event.name }}</h3>
+    <p>Tipo: {{ ticket.seat_type }}</p>
+    <p>Data: {{ ticket.purchase_date }}</p>
+    {% if ticket.qr_code_image %}
+        <img src="{{ ticket.qr_code_image.url }}" alt="QR Code">
+    {% endif %}
+</div>
+{% empty %}
+<p>Você ainda não comprou ingressos.</p>
+{% endfor %}

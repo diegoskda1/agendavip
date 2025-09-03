@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}{{ event.name }} - AgendaVIP{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/event_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="event-hero">
+    <div class="container">
+        <div class="row align-items-start">
+
+            <!-- Poster do Evento -->
+            <div class="col-lg-3 col-md-4 col-12 text-center mb-4 mb-md-0">
+                {% if event.cover_image %}
+                    <img src="{{ event.cover_image.url }}" alt="{{ event.name }}" class="event-poster">
+                {% else %}
+                    <div class="event-poster" style="background-color:#333; display:flex; align-items:center; justify-content:center; color:#fff;">
+                        Sem Imagem
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Informações Principais -->
+            <div class="col-lg-6 col-md-8 col-12 mb-4 mb-md-0">
+                <h1 class="event-title">{{ event.name }}</h1>
+                <p class="event-subtitle">{{ event.description|truncatechars:1000 }}</p>
+
+                <!-- Gêneros e Classificação -->
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    {% for g in event.genres.all %}
+                        <span class="badge bg-primary">{{ g.name }}</span>
+                    {% endfor %}
+                    {% if event.event_type %}
+                        <span class="badge bg-info text-dark">{{ event.event_type.name }}</span>
+                    {% endif %}
+                </div>
+
+                <!-- Avaliação -->
+                <div class="d-flex flex-wrap gap-3 align-items-center">
+                    <div class="text-white">
+                        {% for _ in full_stars %}
+                            <i class="bi bi-star-fill text-warning"></i>
+                        {% endfor %}
+                        {% if half_star %}
+                            <i class="bi bi-star-half text-warning"></i>
+                        {% endif %}
+                        {% for _ in empty_stars %}
+                            <i class="bi bi-star text-warning"></i>
+                        {% endfor %}
+                        <span class="ms-1">{{ event.rating }}/5</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Lateral Informações -->
+            <div class="event-info-card info-card-side">
+                <h3 class="info-title">Informações</h3>
+
+                <div class="info-item">
+                    <i class="bi bi-calendar-event info-icon"></i>
+                    <div>
+                        <div class="fw-bold">Data e Horário</div>
+                        <div>{{ event.start_time|date:"d/m/Y H:i" }}</div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="bi bi-geo-alt info-icon"></i>
+                    <div>
+                        <div class="fw-bold">Local</div>
+                        <div>{{ event.venue.name }}</div>
+                    </div>
+                </div>
+
+                {% if event.duration_minutes %}
+                <div class="info-item">
+                    <i class="bi bi-clock info-icon"></i>
+                    <div>
+                        <div class="fw-bold">Duração</div>
+                        <div>{{ event.duration_minutes }} minutos</div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if artists %}
+                <div class="info-item">
+                    <i class="bi bi-music-note info-icon"></i>
+                    <div>
+                        <div class="fw-bold">Artistas</div>
+                        <div>
+                            {% for artist in artists %}
+                                {{ artist.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if genres %}
+                <div class="info-item">
+                    <i class="bi bi-tags info-icon"></i>
+                    <div>
+                        <div class="fw-bold">Gêneros</div>
+                        <div>
+                            {% for genre in genres %}
+                                {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if event.director %}
+                <div class="info-item">
+                    <i class="bi bi-person-badge info-icon"></i>
+                    <div>
+                        <div class="fw-bold">Direção</div>
+                        <div>{{ event.director }}</div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if event.distributor %}
+                <div class="info-item">
+                    <i class="bi bi-building info-icon"></i>
+                    <div>
+                        <div class="fw-bold">Distribuidor</div>
+                        <div>{{ event.distributor }}</div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if event.country_of_origin %}
+                <div class="info-item">
+                    <i class="bi bi-geo info-icon"></i>
+                    <div>
+                        <div class="fw-bold">País de Origem</div>
+                        <div>{{ event.country_of_origin.name }} <img src="{{ event.country_of_origin.flag }}" alt="" style="width:16px;height:12px;"></div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Áreas de Assentos / Evento Encerrado -->
+{% if ticket_info and can_buy %}
+    <!-- Eventos ativos: mantém o formulário normal -->
+    <section class="seating-section py-5 bg-dark text-white">
+        <div class="container">
+            <h2 class="mb-4">Escolha a quantidade de ingressos</h2>
+            <form id="seating-form" method="post" action="{% url 'cart:add_to_cart' event.id %}">
+                {% csrf_token %}
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3">
+                        <div class="card text-dark" style="background-color: #FFD700;">
+                            <div class="card-body">
+                                <h4>VIP</h4>
+                                <p>
+                                    Disponíveis: {{ ticket_info.vip_seats }}<br>
+                                    Preço: R$ {{ ticket_info.vip_price|floatformat:2 }}
+                                </p>
+                                <input type="number" class="form-control" name="vip_quantity" min="0" max="{{ ticket_info.vip_seats }}" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="card text-white" style="background-color: #0d6efd;">
+                            <div class="card-body">
+                                <h4>Normal</h4>
+                                <p>
+                                    Disponíveis: {{ ticket_info.normal_seats }}<br>
+                                    Preço: R$ {{ ticket_info.normal_price|floatformat:2 }}
+                                </p>
+                                <input type="number" class="form-control" name="normal_quantity" min="0" max="{{ ticket_info.normal_seats }}" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="card text-white" style="background-color: #28a745;">
+                            <div class="card-body">
+                                <h4>Open Bar</h4>
+                                <p>
+                                    Disponíveis: {{ ticket_info.openbar_seats }}<br>
+                                    Preço: R$ {{ ticket_info.openbar_price|floatformat:2 }}
+                                </p>
+                                <input type="number" class="form-control" name="openbar_quantity" min="0" max="{{ ticket_info.openbar_seats }}" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if ticket_info.map_image %}
+                <div class="mt-4 text-center">
+                    <img src="{{ ticket_info.map_image.url }}" alt="Mapa do Local" class="img-fluid rounded">
+                </div>
+                {% endif %}
+
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-warning btn-lg">Adicionar ao carrinho</button>
+                </div>
+            </form>
+        </div>
+    </section>
+{% else %}
+    <!-- Eventos antigos ou encerrados -->
+    <section class="py-5 bg-dark text-white text-center">
+        <div class="container">
+            <h2>Evento Encerrado</h2>
+            <p>Este evento já ocorreu ou não está mais ativo. Você ainda pode consultar as informações acima.</p>
+        </div>
+    </section>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+{% if can_buy %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("seating-form");
+
+    form.addEventListener("submit", function(e) {
+        const vip = parseInt(form.vip_quantity.value) || 0;
+        const normal = parseInt(form.normal_quantity.value) || 0;
+        const openbar = parseInt(form.openbar_quantity.value) || 0;
+
+        if (vip + normal + openbar === 0) {
+            e.preventDefault();
+            alert("Selecione pelo menos um ingresso!");
+            return;
+        }
+
+        if (vip > {{ ticket_info.vip_seats }} || normal > {{ ticket_info.normal_seats }} || openbar > {{ ticket_info.openbar_seats }}) {
+            e.preventDefault();
+            alert("Quantidade selecionada maior que o disponível!");
+            return;
+        }
+    });
+});
+</script>
+{% endif %}
+{% endblock %}

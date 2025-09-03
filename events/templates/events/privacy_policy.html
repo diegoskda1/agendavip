@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Política de Privacidade - {{ project_name }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1>Política de Privacidade</h1>
+    <p>No <strong>{{ project_name }}</strong>, desenvolvido por {{ company_name }}, sua privacidade é muito importante.</p>
+
+    <h3>1. Coleta de Dados</h3>
+    <p>Coletamos informações como nome, e-mail, telefone e histórico de compras, com o objetivo de oferecer uma experiência personalizada e compras mais rápidas.</p>
+
+    <h3>2. Armazenamento e Segurança</h3>
+    <p>Seus dados são armazenados em nosso banco de dados seguro e criptografado, seguindo as diretrizes da LGPD, garantindo confidencialidade e integridade.</p>
+
+    <h3>3. Finalidade do Uso</h3>
+    <p>Os dados coletados são utilizados para facilitar futuras compras, oferecer suporte, enviar notificações sobre eventos e melhorar a experiência no site.</p>
+
+    <h3>4. Compartilhamento de Dados</h3>
+    <p>Não compartilhamos seus dados com terceiros sem seu consentimento, exceto quando necessário por lei ou para cumprir obrigações legais.</p>
+
+    <h3>5. Direitos do Usuário</h3>
+    <p>Você pode solicitar acesso, correção ou exclusão dos seus dados a qualquer momento através de nosso canal de contato.</p>
+
+    {% load tz %}
+    <p>Última atualização: {% now "d/m/Y" %}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Termos de Uso - {{ project_name }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1>Termos de Uso</h1>
+    <p>Bem-vindo ao <strong>{{ project_name }}</strong>, desenvolvido por {{ company_name }}. Ao utilizar este site, você concorda com os seguintes termos:</p>
+
+    <h3>1. Aceitação dos Termos</h3>
+    <p>Ao acessar ou usar nossos serviços, você concorda com estes termos e com a nossa Política de Privacidade.</p>
+
+    <h3>2. Uso do Site</h3>
+    <p>Você se compromete a utilizar o site de forma legal, ética e segura, não praticando atividades que possam comprometer o funcionamento do site ou a segurança de outros usuários.</p>
+
+    <h3>3. Responsabilidade pelo Conteúdo</h3>
+    <p>As informações e eventos divulgados no site são de responsabilidade dos organizadores dos eventos. O {{ project_name }} atua apenas como plataforma de divulgação e compra.</p>
+
+    <h3>4. Proteção de Dados</h3>
+    <p>Seus dados pessoais são coletados e armazenados de forma segura, conforme a LGPD, permitindo compras futuras mais rápidas e seguras.</p>
+
+    <h3>5. Modificações</h3>
+    <p>O {{ project_name }} se reserva o direito de alterar estes termos a qualquer momento. Recomendamos que você consulte periodicamente esta página.</p>
+
+    {% load tz %}
+    <p>Última atualização: {% now "d/m/Y" %}</p>
+</div>
+{% endblock %}

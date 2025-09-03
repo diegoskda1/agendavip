@@ -1,0 +1,141 @@
+/* Container principal para centralização */
+.row.justify-content-center {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 20px 0;
+}
+
+/* Estilização do container do formulário */
+.form-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 2rem 0;
+    border: 1px solid #eaeaea;
+}
+
+/* Título do formulário */
+.form-container h2 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 1.5rem !important;
+    font-size: 1.8rem;
+}
+
+/* Estilização de todos os campos do formulário */
+.form-control,
+.flatpickr-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff;
+}
+
+.form-control:focus,
+.flatpickr-input:focus {
+    border-color: #4e0ca3;
+    box-shadow: 0 0 0 3px rgba(78, 12, 163, 0.15);
+    outline: none;
+}
+
+/* Rótulos dos campos */
+.form-label {
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Mensagens de erro */
+.errorlist {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Botão de submit */
+.btn-primary {
+    background-color: #4e0ca3;
+    border: none;
+    padding: 0.8rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #3c0982;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Melhorias de espaçamento */
+.mb-3 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Transformar texto em maiúsculo */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    text-transform: uppercase;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .row.justify-content-center {
+        min-height: calc(100vh - 150px);
+    }
+    
+    .form-container h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Estilo da tabela de histórico de ingressos */
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+.tickets-table th, .tickets-table td {
+    border: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.tickets-table th {
+    background-color: #f8f8f8;
+    font-weight: 600;
+}
+
+.tickets-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.tickets-table a {
+    color: #4e0ca3;
+    text-decoration: none;
+}
+
+.tickets-table a:hover {
+    text-decoration: underline;
+}
