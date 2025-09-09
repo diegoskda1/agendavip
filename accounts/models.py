@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
 # Tipos de usuário possíveis
@@ -15,15 +15,31 @@ class CustomUser(AbstractUser):
     """
     full_name = models.CharField(max_length=150, verbose_name="Nome Completo")
     email = models.EmailField(unique=True, verbose_name="E-mail")
-    cpf = models.CharField(max_length=14, blank=True, null=True, verbose_name="CPF")
-    phone = models.CharField(max_length=20, blank=True, null=True, verbose_name="Telefone")
+    cpf = models.CharField(max_length=14, unique=True, verbose_name="CPF")
+    phone = models.CharField(max_length=20, unique=True, verbose_name="Telefone")
     user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default='customer', verbose_name="Tipo de Usuário")
     is_active = models.BooleanField(default=True, verbose_name="Ativo")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Atualizado em")
 
+    # Corrigindo conflitos com auth.User
+    groups = models.ManyToManyField(
+        Group,
+        related_name='customuser_set',
+        blank=True,
+        help_text='Grupos aos quais este usuário pertence.',
+        verbose_name='Grupos',
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name='customuser_set',
+        blank=True,
+        help_text='Permissões específicas para este usuário.',
+        verbose_name='Permissões de usuário',
+    )
+
     USERNAME_FIELD = 'email'   # login via email
-    REQUIRED_FIELDS = ['username', 'full_name']  # username ainda é obrigatório
+    REQUIRED_FIELDS = ['username', 'full_name']
 
     class Meta:
         verbose_name = "Usuário"

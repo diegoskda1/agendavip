@@ -10,7 +10,7 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
 
     list_display = ['email', 'full_name', 'user_type', 'is_staff', 'is_active']
-    list_filter = ['user_type', 'is_staff', 'is_active']
+    list_filter = ['user_type', 'is_staff', 'is_active', 'groups']
 
     fieldsets = (
         (None, {'fields': ('email', 'username', 'full_name', 'password', 'cpf', 'phone', 'user_type')}),
@@ -23,13 +23,14 @@ class CustomUserAdmin(UserAdmin):
             'classes': ('wide',),
             'fields': (
                 'email', 'username', 'full_name', 'cpf', 'phone', 'user_type',
-                'password1', 'password2', 'is_staff', 'is_active'
+                'password1', 'password2', 'is_staff', 'is_active', 'groups', 'user_permissions'
             )
         }),
     )
 
     search_fields = ('email', 'full_name', 'username', 'cpf')
     ordering = ('email',)
+
 
 # Admin do Profile
 class ProfileAdmin(admin.ModelAdmin):

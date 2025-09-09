@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}AgendaVIP - Home{% endblock %}
+
+{% block content %}
+<h1>Bem-vindo ao AgendaVIP!</h1>
+
+{% if user.is_authenticated %}
+    <p>Olá, {{ user.full_name }} | <a href="{% url 'logout' %}">Sair</a></p>
+{% else %}
+    <p><a href="{% url 'login' %}">Entrar</a> | <a href="{% url 'register' %}">Registrar</a></p>
+{% endif %}
+{% endblock %}
