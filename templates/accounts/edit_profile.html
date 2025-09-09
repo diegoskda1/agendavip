@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Editar Perfil</h2>
+    <form method="post">
+        {% csrf_token %}
+        <h5>Dados do Usuário</h5>
+        {{ user_form.as_p }}
+        <h5 class="mt-4">Perfil</h5>
+        {{ profile_form.as_p }}
+        <button type="submit" class="btn btn-success mt-3">Salvar Alterações</button>
+    </form>
+</div>
+{% endblock %}

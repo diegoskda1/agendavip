@@ -1,0 +1,77 @@
+Recuperaçõa de senha
+agendavip.rs@gmail.com
+612850@Sa 
+
+
+
+fluxo do sistema
+
+Usuário se cadastra / faz login → (accounts)
+
+Navega nos eventos e ingressos → (events)
+
+Adiciona ingressos ao carrinho → (cart)
+
+Finaliza pedido → (orders)
+
+Realiza pagamento → (payments)
+
+Recebe ingresso digital (QR/PDF) → (tickets)
+
+Recebe notificações → (notifications)
+
+Admin vê relatórios → (analytics)
+
+
+##############################################
+Ordem ideal para começar o desenvolvimento:
+
+accounts/ (Usuários)
+
+Porque todo o resto depende do login/cadastro.
+
+Criar CustomUser com campos extras (nome, telefone, tipo de usuário: cliente / organizador / admin).
+
+Implementar registro, login/logout e recuperação de senha.
+
+events/ (Eventos e ingressos disponíveis)
+
+Estruturar Event, Category, Venue e TicketType.
+
+Criar listagem e detalhes de evento.
+
+cart/ (Carrinho de compras)
+
+Implementar Cart e CartItem relacionados a TicketType.
+
+Views de adicionar/remover ingressos.
+
+orders/ (Pedidos e vendas)
+
+Estruturar Order e OrderItem.
+
+Conectar com carrinho → checkout.
+
+payments/ (Pagamentos)
+
+Criar modelo PaymentTransaction.
+
+Implementar integração com PagSeguro (e deixar hooks para Pix, Stripe, MercadoPago).
+
+tickets/ (Ingressos digitais)
+
+Geração de QRCode único.
+
+Download do ingresso em PDF.
+
+View de validação (organizador escaneia e valida).
+
+notifications/ (Comunicação com usuários)
+
+Disparar email de confirmação de compra.
+
+Enfileirar notificações (ex: "Ingresso disponível", "Evento alterado").
+
+analytics/ (Dashboard e relatórios)
+
+Relatórios de vendas, ingressos, receita por evento.

@@ -1,0 +1,76 @@
+agendavip/
+│
+├── app/                          # Core do sistema (configurações globais)
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+│
+├── accounts/                     # Usuários (clientes, organizadores, admins)
+│   ├── models.py   (CustomUser, Profile)
+│   ├── forms.py    (cadastro, login, edição)
+│   ├── urls.py
+│   ├── views.py
+│   └── admin.py
+│
+├── events/                       # Eventos e ingressos
+│   ├── models.py   (Event, TicketType, Category, Venue)
+│   ├── urls.py
+│   ├── views.py
+│   ├── forms.py
+│   └── admin.py
+│
+├── cart/                         # Carrinho de compras
+│   ├── models.py   (Cart, CartItem)
+│   ├── urls.py
+│   └── views.py   (add_to_cart, remove_from_cart, view_cart)
+│
+├── orders/                       # Pedidos e vendas
+│   ├── models.py   (Order, OrderItem)
+│   ├── urls.py
+│   └── views.py   (checkout, order_detail, my_orders)
+│
+├── payments/                     # Pagamentos integrados
+│   ├── models.py   (PaymentTransaction)
+│   ├── services.py (PagSeguro, Pix, Stripe, MercadoPago)
+│   ├── urls.py
+│   └── views.py   (process_payment, webhook_return)
+│
+├── tickets/                      # Ingressos digitais
+│   ├── models.py   (TicketInstance, QRCode, PDF generator)
+│   ├── views.py    (download_ticket, validate_ticket)
+│   ├── urls.py
+│   └── utils.py    (funções de QRCode, geração de PDF)
+│
+├── notifications/                # Emails, notificações push, SMS
+│   ├── models.py   (Notification, EmailQueue)
+│   ├── views.py
+│   ├── services.py (integração SendGrid, SMTP, Firebase)
+│   └── urls.py
+│
+├── analytics/                    # Relatórios e dashboards
+│   ├── views.py    (dashboard, vendas por evento, relatórios financeiros)
+│   ├── utils.py    (funções de cálculos e gráficos)
+│   └── urls.py
+│
+├── templates/                    # Templates globais
+│   ├── base.html
+│   ├── accounts/
+│   ├── events/
+│   ├── cart/
+│   ├── orders/
+│   ├── payments/
+│   ├── tickets/
+│   ├── notifications/
+│   └── analytics/
+│
+├── static/                       # Arquivos estáticos
+│   ├── css/
+│   ├── js/
+│   └── img/
+│
+├── media/                        # Uploads (banners, ingressos gerados, logos)
+│
+├── manage.py
+└── requirements.txt
